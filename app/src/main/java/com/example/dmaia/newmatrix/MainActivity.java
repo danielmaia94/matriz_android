@@ -17,30 +17,16 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-//        super.onCreate(savedInstanceState);
-//        setContentView(R.layout.activity_main);
-//        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-//        setSupportActionBar(toolbar);
-//
-//        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-//        fab.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-//                        .setAction("Action", null).show();
-//            }
-//        });
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         long x = System.currentTimeMillis();
 
-        MatrixMultiply matrix = new MatrixMultiply(criaMatriz(64), criaMatriz(64));
+        Strassen matrix = new Strassen();
 
-        Debug.startMethodTracing("matrix_multiply_no_64x64");
+        Debug.startMethodTracing("new_matrix_multiply_ot_256x256");
 
-        matrix.multiply();
+        matrix.multiply(criaMatriz(256), criaMatriz(256));
 
         Debug.stopMethodTracing();
 
@@ -48,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
 
         screenText += "\n\nDuracao da aplicacao: ";
         screenText += x;
-        screenText += "ms 64 x 64 nao otimizado";
+        screenText += "ms 256 x 256 otimizado";
 
         TextView editText = findViewById(R.id.conteudo);
         editText.setText(screenText);
@@ -66,20 +52,6 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return array;
-    }
-
-    public void imprimeResultado(MatrixMultiply matrix)
-    {
-        int resultado[][] = matrix.getResult();
-
-        int x = resultado.length;
-        int y = x;
-
-        for(int i = 0; i < x; i++) {
-            for(int j = 0; j < y; j++) {
-//                Log.d("a", "teste");
-            }
-        }
     }
 
     @Override

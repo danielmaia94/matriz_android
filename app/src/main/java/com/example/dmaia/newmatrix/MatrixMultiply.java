@@ -1,18 +1,10 @@
 package com.example.dmaia.newmatrix;
 class MatrixMultiply{
 
-    int matrix1[][];
-    int matrix2[][];
-    int result[][] = new int[64][64];
-
-    public MatrixMultiply(int[][] op1, int[][] op2) {
-        matrix1 = op1;
-        matrix2 = op2;
-    }
-
-    public void multiply()  {
+    public void multiply(int[][] matrix1, int[][] matrix2)  {
         int x = matrix1.length;
         int y = x;
+        int result[][] = new int[matrix1.length][matrix1.length];
 
         for(int i = 0; i < x; i++) {
             for(int j = 0; j < y-1; j++) {
@@ -22,9 +14,5 @@ class MatrixMultiply{
                 }
             }
         }
-    }
-
-    public int[][] getResult() {
-        return result;
     }
 }
